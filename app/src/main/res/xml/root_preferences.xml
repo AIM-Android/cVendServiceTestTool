@@ -1,0 +1,42 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory app:title="@string/ethernet_tethering_enable_disable_header">
+
+        <Preference
+            android:key="ethernet_tethering"
+            android:title="@string/ethernet_tethering_title"
+            android:summary="">
+            <intent
+                android:action="com.advantech.cvendservicetesttool.EthernetTetheringActivity.class"
+                android:targetClass="com.advantech.cvendservicetesttool.EthernetTetheringActivity"
+                android:targetPackage="com.advantech.cvendservicetesttool" />
+        </Preference>
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/bcr_gpio_pin_enable_disable_header">
+
+        <Preference
+            android:key="bcr_gpio_pin"
+            android:title="@string/bcr_gpio_pin_title"
+            android:summary="">
+            <intent
+                android:action="com.advantech.cvendservicetesttool.BCRGPIOPinActivity.class"
+                android:targetClass="com.advantech.cvendservicetesttool.BCRGPIOPinActivity"
+                android:targetPackage="com.advantech.cvendservicetesttool" />
+        </Preference>
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/onewire_external_module_name_header">
+
+        <Preference
+            android:key="onewire_external_module"
+            android:title="@string/onewire_external_module_name_title"
+            android:summary="">
+            <intent
+                android:action="com.advantech.cvendservicetesttool.OnewireExternalActivity.class"
+                android:targetClass="com.advantech.cvendservicetesttool.OnewireExternalActivity"
+                android:targetPackage="com.advantech.cvendservicetesttool" />
+        </Preference>
+    </PreferenceCategory>
+</PreferenceScreen>

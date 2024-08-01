@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">cVendServiceTestTool</string>
+
+    <!-- Preference Titles -->
+    <string name="ethernet_tethering_enable_disable_header">Ethernet Tethering Enable / Disable</string>
+    <string name="bcr_gpio_pin_enable_disable_header">BCR GPIO Pin Enable / Disable</string>
+    <string name="onewire_external_module_name_header">OneWire External Module Name</string>
+
+    <!-- Messages Preferences -->
+    <string name="ethernet_tethering_title">ethernet tethering</string>
+    <string name="bcr_gpio_pin_title">bcr gpio pin</string>
+    <string name="txt_ethernet_tethering">Ethernet Tethering</string>
+    <string name="onewire_external_module_name_title">onewire external module name</string>
+    <string name="txt_active">low</string>
+    <string name="txt_deactive">high</string>
+    <string name="txt_bcr_gpio_pin">bcr gpio pin</string>
+</resources>
