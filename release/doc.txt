@@ -1,0 +1,1 @@
+adb shell am startservice -n com.advantech.cvendservice/com.advantech.cvendservice.CVendService
