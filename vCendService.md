@@ -2,6 +2,14 @@
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cVendServiceSample 提供了 Ethernet Tethering、BCR GPIO Pin、OneWire External 等功能的测试 demo，并提供了对应 api 的具体使用方法。
 
+**notes**
+
+要使用 cVendServiceSample 需要先安装 cVendService，需要手动执行如下指令启动 service，若需要开机自启动，需要将 service 预置到 bsp 中
+
+```bash
+adb shell am startservice -n com.advantech.cvendservice/com.advantech.cvendservice.CVendService
+```
+
 ## cVendService
 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*cVendService 是一个用于控制 Ethernet Tethering、BCR GPIO Pin、OneWire External 于一体的 service，对外暴露了广播接口，其收到对应的 action 就会去处理相应的动作，并且返回结果。*
@@ -78,7 +86,7 @@ private static final String ACTION_BCRPIN_LOW = "com.advantech.aim75.BCRPIN_LOW"
 sendBroadcast("com.advantech.aim75.BCRPIN_HIGH");
 
 // sendBroadcast active action
-sendBroadcast("com.advantech.aim75.BCRPIN_LOW");
+        sendBroadcast("com.advantech.aim75.BCRPIN_LOW");
 ```
 
 - *返回值说明*
@@ -87,3 +95,53 @@ None
 
 #### OnewireExternal
 
+- *接口说明*
+
+```java
+// 获取 DockingName 和 DockingValue 的广播接口
+private static final String ACTION_ONEWIRE = "com.advantech.aim75.ONEWIRE";
+
+// 获取返回值的广播接口
+private static final String ACTION_ONEWIRE_RESULT = "com.advantech.aim75.ONEWIRE_RESULT";
+
+// 携带参数指令的 key
+private static final String ONEWIRE_RESULT_KEY = "apccmd";
+
+// 携带返回值的 key
+private static final String ONEWIRE_RESULT = "ReturnData";
+```
+
+- *使用说明*
+
+```java
+// 发送 ACTION_ONEWIRE 并携带 apccmd 80,
+Intent intent = new Intent();
+        intent.setAction("com.advantech.aim75.ONEWIRE");
+        intent.putExtra("apccmd", "80");
+        sendBroadcast(intent);
+
+// 发送 ACTION_ONEWIRE 并携带 apccmd 81,
+        Intent intent = new Intent();
+        intent.setAction("com.advantech.aim75.ONEWIRE");
+        intent.putExtra("apccmd", "81");
+        sendBroadcast(intent);
+```
+
+- *返回值说明*
+
+```java
+IntentFilter filter = new IntentFilter();
+        filter.addAction("com.advantech.aim75.ONEWIRE_RESULT");
+        registerReceiver(broadcastReceiver, filter);
+
+private final BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+@Override
+public void onReceive(Context context, Intent intent) {
+        String action = intent.getAction();
+        if (ACTION_ONEWIRE_RESULT.equals(action)) {
+        // result
+        String result = intent.getStringExtra("ReturnData");
+        }
+        }
+        };
+```

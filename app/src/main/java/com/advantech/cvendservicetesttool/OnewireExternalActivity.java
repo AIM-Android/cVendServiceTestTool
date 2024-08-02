@@ -23,6 +23,7 @@ public class OnewireExternalActivity extends AppCompatActivity {
 
     private static final String ACTION_ONEWIRE = "com.advantech.aim75.ONEWIRE";
     private static final String ACTION_ONEWIRE_RESULT = "com.advantech.aim75.ONEWIRE_RESULT";
+    private static final String ONEWIRE_RESULT_KEY = "apccmd";
     private static final String ONEWIRE_RESULT = "ReturnData";
 
     private TextView resultText;
@@ -64,14 +65,14 @@ public class OnewireExternalActivity extends AppCompatActivity {
     private void broadcastOneWireExternalTo80() {
         Intent intent = new Intent();
         intent.setAction(ACTION_ONEWIRE);
-        intent.putExtra("apccmd", "80");
+        intent.putExtra(ONEWIRE_RESULT_KEY, "80");
         sendBroadcast(intent);
     }
 
     private void broadcastOneWireExternalTo81() {
         Intent intent = new Intent();
         intent.setAction(ACTION_ONEWIRE);
-        intent.putExtra("apccmd", "81");
+        intent.putExtra(ONEWIRE_RESULT_KEY, "81");
         sendBroadcast(intent);
     }
 
