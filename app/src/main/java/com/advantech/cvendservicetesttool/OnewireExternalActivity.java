@@ -21,10 +21,15 @@ public class OnewireExternalActivity extends AppCompatActivity {
 
     private static final String TAG = "OnewireExternalActivity";
 
-    private static final String ACTION_ONEWIRE = "com.advantech.aim75.ONEWIRE";
-    private static final String ACTION_ONEWIRE_RESULT = "com.advantech.aim75.ONEWIRE_RESULT";
-    private static final String ONEWIRE_RESULT_KEY = "apccmd";
-    private static final String ONEWIRE_RESULT = "ReturnData";
+//    private static final String ACTION_ONEWIRE = "com.advantech.aim75.ONEWIRE";
+//    private static final String ACTION_ONEWIRE_RESULT = "com.advantech.aim75.ONEWIRE_RESULT";
+//    private static final String ONEWIRE_RESULT_KEY = "apccmd";
+//    private static final String ONEWIRE_RESULT = "ReturnData";
+
+    private static final String ACTION_EXTENSION_MODULE_ONEWIRE = "com.advantech.intent.action.EXTENSION_MODULE_ONEWIRE";
+    private static final String EXTRA_EXTENSION_MODULE_ONEWIRE_CMD = "com.advantech.intent.extra.EXTENSION_MODULE_ONEWIRE_CMD";
+    private static final String ACTION_EXTENSION_MODULE_ONEWIRE_RESULT = "com.advantech.intent.action.EXTENSION_MODULE_ONEWIRE_RESULT";
+    private static final String EXTRA_EXTENSION_MODULE_ONEWIRE_DATA = "com.advantech.intent.extra.EXTENSION_MODULE_ONEWIRE_DATA";
 
     private TextView resultText;
 
@@ -64,21 +69,21 @@ public class OnewireExternalActivity extends AppCompatActivity {
 
     private void broadcastOneWireExternalTo80() {
         Intent intent = new Intent();
-        intent.setAction(ACTION_ONEWIRE);
-        intent.putExtra(ONEWIRE_RESULT_KEY, "80");
+        intent.setAction(ACTION_EXTENSION_MODULE_ONEWIRE);
+        intent.putExtra(EXTRA_EXTENSION_MODULE_ONEWIRE_CMD, "80");
         sendBroadcast(intent);
     }
 
     private void broadcastOneWireExternalTo81() {
         Intent intent = new Intent();
-        intent.setAction(ACTION_ONEWIRE);
-        intent.putExtra(ONEWIRE_RESULT_KEY, "81");
+        intent.setAction(ACTION_EXTENSION_MODULE_ONEWIRE);
+        intent.putExtra(EXTRA_EXTENSION_MODULE_ONEWIRE_CMD, "81");
         sendBroadcast(intent);
     }
 
     private void registerReceiver() {
         IntentFilter filter = new IntentFilter();
-        filter.addAction(ACTION_ONEWIRE_RESULT);
+        filter.addAction(ACTION_EXTENSION_MODULE_ONEWIRE_RESULT);
         registerReceiver(broadcastReceiver, filter);
     }
 
@@ -87,8 +92,8 @@ public class OnewireExternalActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
             Log.d(TAG, "action : " + action);
-            if (ACTION_ONEWIRE_RESULT.equals(action)) {
-                String result = intent.getStringExtra(ONEWIRE_RESULT);
+            if (ACTION_EXTENSION_MODULE_ONEWIRE_RESULT.equals(action)) {
+                String result = intent.getStringExtra(EXTRA_EXTENSION_MODULE_ONEWIRE_DATA);
                 Log.d(TAG, "result : " + result);
                 resultText.setText(result);
             }

@@ -16,8 +16,13 @@ public class BCRGPIOPinActivity extends AppCompatActivity {
 
     private static final String TAG = "EthernetTetheringActivity";
 
-    private static final String ACTION_BCRPIN_HIGH = "com.advantech.aim75.BCRPIN_HIGH";
-    private static final String ACTION_BCRPIN_LOW = "com.advantech.aim75.BCRPIN_LOW";
+//    private static final String ACTION_BCRPIN_HIGH = "com.advantech.aim75.BCRPIN_HIGH";
+//    private static final String ACTION_BCRPIN_LOW = "com.advantech.aim75.BCRPIN_LOW";
+
+    private static final String ACTION_BARCODE_SCANNER = "com.advantech.intent.action.BARCODE_SCANNER";
+    private static final String EXTRA_BARCODE_SCANNER_EVENT = "com.advantech.intent.extra.BARCODE_SCANNER_EVENT";
+    private static final String BARCODE_SCANNER_EVENT_ENABLE = "1";
+    private static final String BARCODE_SCANNER_EVENT_DISABLE = "0";
 
     private Switch sw;
 
@@ -43,7 +48,8 @@ public class BCRGPIOPinActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 ShareUtils.putBoolean(BCRGPIOPinActivity.this, "bcr", isChecked);
                 Intent intent = new Intent();
-                intent.setAction(isChecked ? ACTION_BCRPIN_LOW : ACTION_BCRPIN_HIGH);
+                intent.setAction(ACTION_BARCODE_SCANNER);
+                intent.putExtra(EXTRA_BARCODE_SCANNER_EVENT, isChecked ? BARCODE_SCANNER_EVENT_ENABLE : BARCODE_SCANNER_EVENT_DISABLE);
                 sendBroadcast(intent);
             }
         });
