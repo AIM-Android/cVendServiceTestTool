@@ -22,7 +22,8 @@
             android:label="EthernetTethering" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:label="ServiceTestTool">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -65,6 +65,14 @@ public class OnewireExternalActivity extends AppCompatActivity {
                 broadcastOneWireExternalTo81();
             }
         });
+
+        Button button60 = findViewById(R.id.btn_60);
+        button60.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                broadcastOneWireExternalTo60();
+            }
+        });
     }
 
     private void broadcastOneWireExternalTo80() {
@@ -78,6 +86,13 @@ public class OnewireExternalActivity extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setAction(ACTION_EXTENSION_MODULE_ONEWIRE);
         intent.putExtra(EXTRA_EXTENSION_MODULE_ONEWIRE_CMD, "81");
+        sendBroadcast(intent);
+    }
+
+    private void broadcastOneWireExternalTo60() {
+        Intent intent = new Intent();
+        intent.setAction(ACTION_EXTENSION_MODULE_ONEWIRE);
+        intent.putExtra(EXTRA_EXTENSION_MODULE_ONEWIRE_CMD, "60");
         sendBroadcast(intent);
     }
 

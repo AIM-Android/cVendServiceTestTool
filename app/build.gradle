@@ -11,7 +11,7 @@ android {
         minSdk 24
         targetSdk 33
         versionCode 1
-        versionName "1.0.2"
+        versionName "1.0.3"
 
     }
 
@@ -27,7 +27,7 @@ android {
 
     applicationVariants.configureEach { variant ->
         variant.outputs.configureEach {
-            outputFileName = "cVendServiceTestTool_v${defaultConfig.versionName}_${variant.buildType.name}.apk"
+            outputFileName = "${rootProject.name}_v${defaultConfig.versionName}_${variant.buildType.name}.apk"
         }
     }
 

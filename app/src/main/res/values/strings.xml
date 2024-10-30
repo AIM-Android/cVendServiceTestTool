@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">cVendServiceTestTool</string>
+    <string name="app_name">ServiceTestTool</string>
 
     <!-- Preference Titles -->
     <string name="ethernet_tethering_enable_disable_header">Ethernet Tethering Enable / Disable</string>
